@@ -31,3 +31,15 @@ def publish_container(container_id: str):
 
     res = requests.post(url, data=payload)
     return res.json()
+
+
+def check_container_status(container_id: str):
+    url = f"{BASE_URL}/{container_id}"
+    
+    params = {
+        "fields": "status_code",
+        "access_token": settings.IG_ACCESS_TOKEN
+    }
+    
+    res = requests.get(url, params=params)
+    return res.json()

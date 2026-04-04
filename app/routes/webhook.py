@@ -35,6 +35,9 @@ async def receive_webhook(request: Request):
                     sender_id = event["sender"]["id"]
 
                     if "message" in event:
+                        if event["message"].get("is_echo"):
+                            continue
+
                         text = event["message"].get("text")
                         print("Incoming (messaging):", text)
 

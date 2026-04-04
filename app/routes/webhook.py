@@ -55,8 +55,15 @@ async def receive_webhook(request: Request):
                             print("Incoming (changes):", text)
 
                             if text:
+                                print("Generating AI reply...")
                                 ai_reply = generate_reply(text)
-                                send_instagram_message(sender_id, ai_reply)
+
+                                print("AI Reply:", ai_reply)
+                                print("Sending message to:", sender_id)
+
+                                res = send_instagram_message(sender_id, ai_reply)
+
+                                print("Send result:", res)
 
         return {"status": "ok"}
 

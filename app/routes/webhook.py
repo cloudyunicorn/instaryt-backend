@@ -39,8 +39,15 @@ async def receive_webhook(request: Request):
                         print("Incoming (messaging):", text)
 
                         if text:
-                            ai_reply = generate_reply(text)
-                            send_instagram_message(sender_id, ai_reply)
+                                print("Generating AI reply...")
+                                ai_reply = generate_reply(text)
+
+                                print("AI Reply:", ai_reply)
+                                print("Sending message to:", sender_id)
+
+                                res = send_instagram_message(sender_id, ai_reply)
+
+                                print("Send result:", res)
 
             # ✅ Case 2: Instagram Graph format
             if "changes" in entry:
